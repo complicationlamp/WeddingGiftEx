@@ -12,6 +12,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+
+// =======================================================
+// =======================================================
+// =========try adding in a local mongo db read the docs=====================
+// ============var localdbfortesting = ....===========================================
+// =======================================================
+
 var configDB = require('./config/database.js');
 const {TEST_DATABASE_URL} = require('./config/database');
 

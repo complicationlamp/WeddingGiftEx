@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "app"
+		},
+		{
+			"path": "config"
+		},
+		{
+			"path": "node_modules"
+		},
+		{
+			"path": "test"
+		},
+		{
+			"path": "views"
+		},
+		{
+			"path": ".git"
+		}
+	]
+}
