@@ -1,5 +1,5 @@
-// set up ======================================================================
-// get all the tools we need
+
+
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
@@ -12,17 +12,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-
-// =======================================================
-// =======================================================
-// =========try adding in a local mongo db read the docs=====================
-// ============var localdbfortesting = ....===========================================
-// =======================================================
-
 var configDB = require('./config/database.js');
 const {TEST_DATABASE_URL} = require('./config/database');
 
+// =============================================================
 //configuration ================================================
+// =============================================================
 
 mongoose.connect(configDB.url); //connect to our database
 
@@ -41,11 +36,19 @@ app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 app.use(flash()); // use connect-flash for flash messaging (like 'psw incorrect')
 
+app.use("/app", express.static(__dirname + "/app"));
+app.use("/bundles", express.static(__dirname + "/bundles"))
 
+//==================================================================
 // routes ==========================================================
+//==================================================================
+
 require('./app/routes.js')(app, passport);
 
+//==================================================================
 // launch ==========================================================
+//==================================================================
+
 app.listen(port);
 console.log('Listening on ' + port);
 
@@ -85,4 +88,4 @@ function runServer(TEST_DATABASE_URL, port) {
       });
     });
   }
-  module.exports = { app, runServer, closeServer };
+module.exports = { app, runServer, closeServer };

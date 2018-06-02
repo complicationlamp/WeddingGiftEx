@@ -4,7 +4,7 @@
     <title>Gift Exchange</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../bundles/proCont.js"></script>
     <style>
         body        { padding-top:80px; word-wrap:break-word; display: contents;text-align: center;}
 
@@ -54,130 +54,62 @@
 <!-- ================= -->
 <header><% include partials/header.ejs %></header>
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-id-card-o"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
 
-    <div class="row" style="display: ruby;">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6" ;>
-            <div class="well">
-                <h3><span class="fa fa-user"></span> <%= user.local.firstnamelastname %></h3>
+<div class="page-header text-center">
+    <h1><span class="fa fa-id-card-o"></span> Profile Page</h1>
+    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+</div>
 
-                    <p>
-                        <!-- <strong>id</strong>: <%= user._id %><br> -->
-                        <strong>Name</strong>: <%= user.local.firstnamelastname %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <!-- <strong>password</strong>: <%= user.local.password %><br> -->
-                        <strong>Location</strong>: <%= user.local.whereareyoufrom %><br>
-                        <strong>Relationship</strong>: <%= user.local.relationship %><br>
-                        <strong>What is a small gift unique to where you live</strong>: <%= user.local.giftforex %><br>
+<div class="row" style="display: ruby;">
 
-                    </p>
-                    <button id="randomBtn" type="button" class="btn btn-default btn-sm">Random btn</button>
-                                        
-            </div>
+    <!-- LOCAL INFORMATION -->
+    <div class="col-sm-6" ;>
+        <div class="well">
+            <h3><span class="fa fa-user"></span> <%= user.local.firstnamelastname %></h3>
+
+                <p>
+                    <!-- <strong>id</strong>: <%= user._id %><br> -->
+                    <strong>Name</strong>: <%= user.local.firstnamelastname %><br>
+                    <strong>email</strong>: <%= user.local.email %><br>
+                    <!-- <strong>password</strong>: <%= user.local.password %><br> -->
+                    <strong>Location</strong>: <%= user.local.whereareyoufrom %><br>
+                    <strong>Relationship</strong>: <%= user.local.relationship %><br>
+                    <strong>What is a small gift unique to where you live</strong>: <%= user.local.giftforex %><br>
+
+                </p>
+                <button id="randomBtn" class="btn btn-default btn-sm">Random btn</button>
+                                    
         </div>
-
     </div>
 
-    <div class="row" style="text-align: center; display: ruby;">
+</div>
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Random Match</h3>
+<div class="row" style="text-align: center; display: ruby;">
 
-                    <p>
-                        <!-- <strong>id</strong>: <%= user._id %><br> -->
-                        <strong>Name</strong>: ''''John test''''<br>
-                        <strong>email</strong>: ''''John@test.com''''<br>
-                        <!-- <strong>password</strong>: <%= user.local.password %><br> -->
-                        <strong>Location</strong>: '''frustration island'''<br>
-                        <strong>Relationship</strong>: '''Know a guy who knows a guy'''<br>
-                        <strong>What is a small gift unique to where you live</strong>: ''bizz-buzz foobars'''<br>
+    <!-- LOCAL INFORMATION -->
+    <div class="col-sm-6">
+        <div class="well">
+            <h3><span class="fa fa-user"></span> Random Match</h3>
 
-                    </p>                                        
-            </div>
+                <p>
+                    <!-- <strong>id</strong>: <%= user._id %><br> -->
+                    <strong>Name</strong>: ''''John test''''<br>
+                    <strong>email</strong>: ''''John@test.com''''<br>
+                    <!-- <strong>password</strong>: <%= user.local.password %><br> -->
+                    <strong>Location</strong>: '''frustration island'''<br>
+                    <strong>Relationship</strong>: '''Know a guy who knows a guy'''<br>
+                    <strong>What is a small gift unique to where you live</strong>: ''bizz-buzz foobars'''<br>
+
+                </p>                                        
         </div>
-
     </div>
 
-    <div>
-    <!-- ================================================================ -->
-    <!-- html for the random match ====================================== -->
-    <!-- ================================================================ -->
-    <a href="/findMatch" id="findMatch">FIND A TRADE</a>
-    <div class="messagepop pop">
-        <form method="post" id="new_trade" action="/trade">
-            <p><label for="Name"> Name and match details</label></form></p>
-            <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
-            <p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-            <p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
-        </form>
-    </div>
+</div>
 
-
-    <!-- ================================================================ -->
-    <!-- js/jQuery for the random match ================================= -->
-    <!-- ================================================================ -->
-    <script type="text/javascript">
-        function deselect(e) {
-            $('.pop').slideFadeToggle(function() {
-            e.removeClass('selected');
-            });  
-        }
-
-        $(function() {
-            $('#findMatch').on('click', function() {
-            if($(this).hasClass('selected')) {
-                deselect($(this));               
-            } else {
-                $(this).addClass('selected');
-                $('.pop').slideFadeToggle();
-            }
-            return false;
-            });
-        
-            $('.close').on('click', function() {
-            deselect($('#findMatch'));
-            return false;
-            });    
-        
-        });
-
-        $.fn.slideFadeToggle = function(easing, callback) {
-            return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
-        };
-    </script>
-
-
-    </div>
-
-    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="../app/controller/proCont.js"></script> -->
-    <!-- <script type="text/javascript">
-    $(function() {
-        console.log('before the button')
-        $('randomBtn').on('click', function() {
-        console.log('inside the btn')
-        var randomUserGen = 
-            User.count().exec(function (err, count) {
-
-                    // Get a random entry
-                    var random = Math.floor(Math.random() * count)
-                    
-                    // Again query all users but only fetch one offset by our random #
-                    User.findOne().skip(random).exec(
-                        function (err, result) {
-                        console.log(result) 
-                        })
-                    })                 
-    })
-    }) --> 
-    </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+</script> 
 </div>
 </body>
 </html>
