@@ -58,37 +58,37 @@ module.exports = function(app, passport) {
         });
     });
 
+
     //======================================
     // FIND A RANDOM USER ==================
-    //======================================
-    app.get('/randomUser', function(req, res) {
+    //====================================
+    app.get('/randomUser', function (req, res) {
         console.log('in randomUser route');
-        var randomUserGen =
-            User.count().exec(function (err, count) {
-    
-                    // Get a random entry
-                    var random = Math.floor(Math.random() * count);
-                    console.log('random=====', random)
-                    
-                    // Again query all users but only fetch one offset by our random #
-                    User.findOne().skip(random).exec(
-                        function (err, result) {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                            // Tada! random user
-                            console.log('result========', result) 
-                            return result;
-                        });
-                    });
+        var randomUserGen = User.count().exec(function (err, count) {
 
-        res.json({
-            user: randomUserGen
-        })
+            // Get a random entry
+            var random = Math.floor(Math.random() * count);
+            console.log('random=====', random)
+            
+            // Again query all users but only fetch one offset by our random #
+            
+            return User.findOne().skip(random).exec(
+                function (err, result) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    // Tada! random user
+                    console.log('result========', result) 
+                    // return result;
+                    res.json(result)
+                });
+            });
+        //     console.log('looking for the randomly gererated obj', randomUserGen);
+        // res.json({
+        //     user: randomUserGen
+        // })
     })
-
-
     // =====================================
     // LOGOUT ==============================
     // =====================================
