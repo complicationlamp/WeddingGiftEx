@@ -2,6 +2,8 @@
 // var User = require('../models/user');
 var $ = require('jquery');
 
+let randomUser;
+
 $(function() {
         console.log('before the button')
         $('#randomBtn').on('click', function() {
@@ -15,9 +17,15 @@ $(function() {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", '/randomUser', false ); // false for synchronous request
         xmlHttp.send( null );
-        console.log('responseText=========', xmlHttp.responseText);
-        const randomUser = xmlHttp.responseText;
-
+        // console.log('responseText=========', xmlHttp.responseText);
+        // const randomUser = xmlHttp.responseText;
+        randomUser = JSON.parse(xmlHttp.responseText);
+        addingRandomUser();
+        console.log('some string')
+        // $('#randomBtn').click(function() {
+		// 	console.log('after object');
+		// 	// $('.randomUsrClass').text(randomUser);
+		// 	});	
         //============ESHA NOTES==============
         // Moved this code to routes.js and made this logic an API route
         // You can delete the below
@@ -38,7 +46,17 @@ $(function() {
         
         
         })
-    });
+});
+
+function addingRandomUser() {
+    console.log('after object', randomUser);
+    $('#TC').html(`
+    <strong>Name</strong>: ${randomUser.local.firstnamelastname}<br>
+    <strong>email</strong>: ${randomUser.local.email}<br>
+    <strong>Location</strong>: ${randomUser.local.whereareyoufrom}<br>
+    <strong>Relationship</strong>:${randomUser.local.relationship}<br>
+    <strong>What is a small gift unique to where you live</strong>: ${randomUser.local.giftforex}<br>
+    `)}	
 
 },{"jquery":2}],2:[function(require,module,exports){
 /*!
