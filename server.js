@@ -49,13 +49,19 @@ require('./app/routes.js')(app, passport);
 // launch ==========================================================
 //==================================================================
 
-app.listen(port);
-console.log('Listening on ' + port);
+// app.listen(port);
+// console.log('Listening on ' + port);
 
 
 
-function runServer(TEST_DATABASE_URL, port) {
 
+// =====================================================================
+// set up server to work with testing ==================================
+// =====================================================================
+
+let server;
+
+function runServer() {
     return new Promise((resolve, reject) => {
       mongoose.connect(TEST_DATABASE_URL, err => {
         if (err) {
@@ -88,4 +94,4 @@ function runServer(TEST_DATABASE_URL, port) {
       });
     });
   }
-module.exports = { app, runServer, closeServer };
+module.exports = { runServer, app, closeServer };

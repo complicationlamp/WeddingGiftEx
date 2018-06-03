@@ -83,10 +83,10 @@ after(function() {
 // ===========================================================
 
 describe('Get endpoint', function() {
-    it(' should return the faker generated users', function() {
+    it(' should return the all exiting users', function() {
         let res;
         return chai.requests(app)
-            .get('/')
+            .get('/users')
             .then(function(_res) {
                 res=_res;
                 expect(res).to.have.status(200);
