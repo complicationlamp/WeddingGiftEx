@@ -17,6 +17,14 @@ const {TEST_DATABASE_URL} = require('../config/database');
 chai.use(chaiHttp);
 
 
+// ======================================================
+// Tearing the database down=============================
+// ======================================================
+
+function tearDownDb() {
+    console.warn('Deleting database');
+    return mongoose.connection.dropDatabase();
+}
 
 // ======================================================
 // function to seed the data to the test-database========
@@ -25,9 +33,16 @@ chai.use(chaiHttp);
 function seedUserData() {
     console.log('seeding user info');
     const seedData = [];
-
-    for (let i=1; i<=10; i++) {
-        seedData.push(generateUserData());
+    for (let i = 1; i <= 10; i++) {
+        // seedData.push(generateUserData());
+        seedData.push({
+            email               : faker.internet.email(),
+            password            : faker.internet.password(), 
+            firstnamelastname   : faker.name.findName(),
+            whereareyoufrom     : faker.address.country(), 
+            relationship        : faker.name.jobTitle(),
+            giftforex           : faker.commerce.product()
+        });
     }
     
     return TestUser.insertMany(seedData);
@@ -38,29 +53,21 @@ function seedUserData() {
 //======================================================
 
 
-function generateUserData() {
-    return {
-        email               : faker.internet.email(),
-        password            : faker.internet.password(), 
-        firstnamelastname   : faker.name.findName(),
-        whereareyoufrom     : faker.address.country(), 
-        relationship        : faker.name.jobTitle(),
-        giftforex           : faker.commerce.product()
-    }
-}
-
-// ======================================================
-// Tearing the database down=============================
-// ======================================================
-
-function tearDownDb() {
-    console.warn('Deleting database');
-    return mongoose.connection.dropDatabase();
-}
+// function generateUserData() {
+//     return {
+//         email               : faker.internet.email(),
+//         password            : faker.internet.password(), 
+//         firstnamelastname   : faker.name.findName(),
+//         whereareyoufrom     : faker.address.country(), 
+//         relationship        : faker.name.jobTitle(),
+//         giftforex           : faker.commerce.product()
+//     }
+// }
  
 // =========================================================
 // Starting the test code ==================================
 // =========================================================
+
 describe('gift exchange API that sometimes works', function() {
 
     // =========================================================

@@ -13,13 +13,14 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
-const {TEST_DATABASE_URL} = require('./config/database');
+// const {TEST_DATABASE_URL} = require('./config/database');
 
 // =============================================================
 //configuration ================================================
 // =============================================================
 
 mongoose.connect(configDB.url); //connect to our database
+// const TEST_DATABASE_URL = mongoose.connect(configDB.test);
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -62,8 +63,9 @@ require('./app/routes.js')(app, passport);
 let server;
 
 function runServer() {
+  console.log('in run server')
     return new Promise((resolve, reject) => {
-      mongoose.connect(TEST_DATABASE_URL, err => {
+      mongoose.connect(configDB.test, err => {
         if (err) {
           return reject(err);
         }

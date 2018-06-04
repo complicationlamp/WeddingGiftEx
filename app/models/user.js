@@ -53,4 +53,5 @@ var testUserSchema = mongoose.Schema({
 //==========================================================================
 
 module.exports = mongoose.model('User', userSchema);
-module.exports = mongoose.model('TestUser', testUserSchema);
+const TestUser = mongoose.model('TestUser', testUserSchema);
+module.exports = {TestUser};
