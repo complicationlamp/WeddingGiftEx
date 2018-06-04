@@ -11,8 +11,8 @@ const should = chai.should();
 
 const {TestUser} = require('../app/models/user');
 const {app, runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config/database');
-
+const DATABASE = require('../config/database');
+const TEST_DATABASE_URL = DATABASE.test
 
 chai.use(chaiHttp);
 

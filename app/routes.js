@@ -1,4 +1,7 @@
-var User = require('./models/user');
+const User = require('./models/user');
+const bodyparser = require('body-parser');
+const jsonParser = bodyparser.json();
+
 
 
 module.exports = function(app, passport) {
@@ -58,7 +61,14 @@ module.exports = function(app, passport) {
         });
     });
 
+    // ====================================================
+    // PUT Update the profile SECTION =====================
+    // ====================================================
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    app.put('/profile/:id', jsonParser, (req, res) => {
 
+    })
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     //======================================
     // FIND A RANDOM USER ==================
     //====================================

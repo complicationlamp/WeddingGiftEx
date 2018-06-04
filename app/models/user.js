@@ -32,26 +32,10 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
-//==========================================================================
-// to avoid passport, lets make some module for the local Test db===========
-//==========================================================================
 
-var testUserSchema = mongoose.Schema({
-
-    // local            : {
-        email               : {type: String, required: true},
-        password            : {type: String, required: true},
-        firstnamelastname   : String,
-        whereareyoufrom     : String,
-        relationship        : String,
-        giftforex           : String, 
-    // }
-});
 
 //==========================================================================
 // create the model for users and expose it to our app======================
 //==========================================================================
 
 module.exports = mongoose.model('User', userSchema);
-const TestUser = mongoose.model('TestUser', testUserSchema);
-module.exports = {TestUser};

@@ -19,8 +19,7 @@ var configDB = require('./config/database.js');
 //configuration ================================================
 // =============================================================
 
-mongoose.connect(configDB.url); //connect to our database
-// const TEST_DATABASE_URL = mongoose.connect(configDB.test);
+// mongoose.connect(configDB.url); //connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -55,17 +54,10 @@ require('./app/routes.js')(app, passport);
 
 
 
+function runServer(TEST_DATABASE_URL) {
 
-// =====================================================================
-// set up server to work with testing ==================================
-// =====================================================================
-
-let server;
-
-function runServer() {
-  console.log('in run server')
     return new Promise((resolve, reject) => {
-      mongoose.connect(configDB.test, err => {
+      mongoose.connect(TEST_DATABASE_URL, err => {
         if (err) {
           return reject(err);
         }
@@ -96,4 +88,12 @@ function runServer() {
       });
     });
   }
-module.exports = { runServer, app, closeServer };
+
+// if server.js is called directly (aka, with `node server.js`), this block
+// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
+if (require.main === module) {
+  runServer(configDB.url).catch(err => console.error(err));
+}
+
+
+module.exports = { app, runServer, closeServer };
