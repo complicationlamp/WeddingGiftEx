@@ -37,7 +37,6 @@ module.exports = function(app, passport) {
     // show the signup form
 
     app.get('/signup', function(req, res){
-    
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
@@ -61,14 +60,56 @@ module.exports = function(app, passport) {
         });
     });
 
-    // ====================================================
-    // PUT Update the profile SECTION =====================
-    // ====================================================
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    app.put('/profile/:id', jsonParser, (req, res) => {
+    // =====================================
+    // Updating Info SECTION ===============
+    // =====================================
 
+    app.get('/updateInfo', isLoggedIn, function(req, res) {
+        //this will break if you take out the flash message. Why do you ask? Well this
+        // is a great reading opertunity
+        res.render('updateInfo.ejs', {message: req.flash('updateMessage')    
+        });
     })
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+    // =====================================
+    //PUT Update the profile SECTION =======
+    // =====================================
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXX BEGIN CONSTRUCTION ZONE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// for this I wanted to use the isLoggedIn function to keep it somewhat secure
+    app.put('/profile/:id', isLoggedIn, jsonParser, (req, res) => {
+        //need match up the ids so that we're editing the right info
+        if (!(req.params.id && req.body.id == req.body.id)) {
+            console.log('put id\' aint matchin');
+            const message = (
+                `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`);  
+              console.error(message);
+              return res.status(400).json({ message: message });            
+        } 
+
+        const toUpdate = {};
+        const updateableFields = ['email', 'firstnamelastname', 'whereareyoufrom', 'relationship', 'giftforex'];
+
+        updateableFields.forEach(field => {
+            if (field in req.body) {
+              toUpdate[field] = req.body[field];
+            }
+        });
+        console.log(toUpdate);
+        User
+        //going to use $set to update all the keyvalue pairs
+            .findByIdAndUpdate(req.params.id, {$set: toUpdate})
+            .then(user => res,status(204).end())
+            .catch(err => res.status(500).json({ message: 'Ooops this was coded by a noob; internal server error'}));       
+    });
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXX END CONSTRUCTION ZONE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
     //======================================
     // FIND A RANDOM USER ==================
     //====================================
@@ -94,10 +135,6 @@ module.exports = function(app, passport) {
                     res.json(result)
                 });
             });
-        //     console.log('looking for the randomly gererated obj', randomUserGen);
-        // res.json({
-        //     user: randomUserGen
-        // })
     })
     // =====================================
     // LOGOUT ==============================
