@@ -71,6 +71,36 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OT
     <p>Or go <a href="/">home</a>.</p>
 
 </div>
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+              crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $("form").on("submit", function(e) {
+        e.preventDefault();
+        
+        let toUpdate = {};
+
+        $("form input").each(function(idx, input) {
+        // input is a DOM node
+        // each input has a unique name attribute
+        
+        // if value empty, stop this iteration
+            if (input.value === '') { return; }
+            toUpdate[input.name] = input.value;
+        
+        });
+        // do AJAX using this new object
+        console.log('inside update ejs', toUpdate)
+        $.ajax({
+        url: '/profile/5b149d2428ac2a7a8ed23bed',
+        type: 'PUT',
+        data: JSON.stringify(toUpdate),
+        contentType: 'application/json'
+        })
+    });
+</script>
 
 </div>
 </body>

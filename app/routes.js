@@ -92,16 +92,17 @@ module.exports = function(app, passport) {
               return res.status(400).json({ message: message });            
         } 
 
-        const toUpdate = {};
+        const toUpdate = {local: {}};
         const updateableFields = ['email', 'firstnamelastname', 'whereareyoufrom', 'relationship', 'giftforex'];
         console.log(req.body);
 
         updateableFields.forEach(field => {
-            if (field in req.body.local) {
-              toUpdate[field] = req.body.local[field];
+            if (field in req.body) {
+              toUpdate.local[field] = req.body[field];
             }
         });
-        console.log(toUpdate);
+        console.log('hhhhhhhhhh',toUpdate);
+        console.log(req.params.id);
         User
         //going to use $set to update all the keyvalue pairs
             .findByIdAndUpdate(req.params.id, {$set: toUpdate})
