@@ -82,6 +82,7 @@ module.exports = function(app, passport) {
 
 // for this I wanted to use the isLoggedIn function to keep it somewhat secure
     app.put('/profile/:id', isLoggedIn, jsonParser, (req, res) => {
+        console.log('put function')
         //need match up the ids so that we're editing the right info
         if (!(req.params.id && req.body.id == req.body.id)) {
             console.log('put id\' aint matchin');
@@ -93,17 +94,18 @@ module.exports = function(app, passport) {
 
         const toUpdate = {};
         const updateableFields = ['email', 'firstnamelastname', 'whereareyoufrom', 'relationship', 'giftforex'];
+        console.log(req.body);
 
         updateableFields.forEach(field => {
-            if (field in req.body) {
-              toUpdate[field] = req.body[field];
+            if (field in req.body.local) {
+              toUpdate[field] = req.body.local[field];
             }
         });
         console.log(toUpdate);
         User
         //going to use $set to update all the keyvalue pairs
             .findByIdAndUpdate(req.params.id, {$set: toUpdate})
-            .then(user => res,status(204).end())
+            .then(user => res.status(204).end())
             .catch(err => res.status(500).json({ message: 'Ooops this was coded by a noob; internal server error'}));       
     });
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -12,7 +12,7 @@
         /* ========================================================================== */
         /* adding css for the trade pop up=========================================== */     
         /* ========================================================================== */
-        a.selected {
+        /* a.selected {
             background-color:#1F75CC;
             color:white;
             z-index:100;
@@ -41,7 +41,7 @@
             border-bottom: 1px solid #EFEFEF;
             margin: 8px 0;
             padding-bottom: 8px;
-            }; 
+            };  */
 
 
 
@@ -79,7 +79,8 @@
                     <strong>What is a small gift unique to where you live</strong>: <%= user.local.giftforex %><br>
 
                 </p>
-                
+
+
                <a href="/updateInfo" > <button  id="changeInfo" class="btn btn-default btn-sm">Change Info</button> </a>                   
         </div>
     </div>
@@ -107,9 +108,39 @@
 
 </div>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+              crossorigin="anonymous"></script>
+              
+<!-- <script type="text/javascript">   
+
+    console.log($)
+    $.getJSON('/profile')
+        .then(function(data){
+        console.log(data)
+    }
+        ).catch(function(error){
+        console.log(error)
+    });
+    console.log('will it blend');
+</script> -->
+
 <script type="text/javascript">
-</script> 
+    $.ajax({
+        url: '/profile/5b149d2428ac2a7a8ed23bed',
+        type: 'PUT',    
+        data: JSON.stringify( 
+            {local: {
+                firstnamelastname:''
+            }}
+        ),
+        contentType:'application/json',
+        success: function(result) {
+            alert("success?");
+        }
+    });
+</script>
 </div>
 </body>
 </html>
