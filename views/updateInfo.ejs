@@ -29,7 +29,7 @@
 
 <!-- ===============================================================================
 ===============================================================================
-NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OTHER INFO ALREADY PUT IN
+NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS 
 ===============================================================================
 =============================================================================== -->
 
@@ -63,6 +63,7 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OT
         
 
         <button type="submit" class="btn btn-warning btn-lg">Update</button>
+                
     </form>
 
     <hr>
@@ -97,7 +98,12 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OT
         url: '/profile/5b206dba0fc554024db09251',
         type: 'PUT',
         data: JSON.stringify(toUpdate),
-        contentType: 'application/json'
+        contentType: 'application/json',
+        // this will allow the submit action to nav back after updating the db
+        success: function(){
+            window.location.href = '/profile'
+        }
+
         })
     });
 </script>
