@@ -1,3 +1,4 @@
+'use strict';
 
 // load the things we need
 var mongoose = require('mongoose');
@@ -10,27 +11,28 @@ mongoose.Promise = global.Promise;
 var userSchema = mongoose.Schema({
 
 
-    email               : {type: String, required: true},
-    password            : {type: String, required: true},
-    firstnamelastname   : String,
-    whereareyoufrom     : String,
-    relationship        : String,
-    giftforex           : String, 
+  email               : {type: String, required: true},
+  password            : {type: String, required: true},
+  firstnamelastname   : String,
+  whereareyoufrom     : String,
+  relationship        : String,
+  giftforex           : String, 
 
 });
+
 
 //=========================================================================
 // methods generating a hash===============================================
 //=========================================================================
 
 userSchema.methods.generateHash = function(password) {
-    //Salting 8, genrally 10 is considered safe and balanced with speed
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  //Salting 8, genrally 10 is considered safe and balanced with speed
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
 userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 
