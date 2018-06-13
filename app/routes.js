@@ -108,6 +108,23 @@ module.exports = function(app, passport) {
       .catch(err => res.status(500).json({ message: 'Ooops this was coded by a noob; internal server error'}));       
   });
 
+
+  // ==============================================================
+  // Delete user profile===========================================
+  // ==============================================================
+  
+  app.delete('/profile/:id', isLoggedIn, (req,res) => {
+    console.log('delete function');
+    //need match up the ids so that we're editing the right info
+    if (!(req.params.id && req.body.id === req.body.id)) {
+      console.log('delete id\' aint matchin')};
+    
+    User
+      .findByIdAndDelete(req.params.id);
+
+  }); 
+
+
   //======================================
   // FIND A RANDOM USER ==================
   //====================================
