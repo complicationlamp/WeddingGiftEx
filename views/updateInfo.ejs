@@ -40,10 +40,10 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OT
             <label>Email (Required)</label>
             <input type="text" class="form-control" name="email">
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>Password (Required)</label>
             <input type="password" class="form-control" name="password">
-        </div>
+        </div> -->
         <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" name="firstnamelastname">
@@ -94,7 +94,7 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS & WE NEED TO NOT DELETE OT
         // do AJAX using this new object
         console.log('inside update ejs', toUpdate)
         $.ajax({
-        url: '/profile/5b149d2428ac2a7a8ed23bed',
+        url: '/profile/5b206dba0fc554024db09251',
         type: 'PUT',
         data: JSON.stringify(toUpdate),
         contentType: 'application/json'

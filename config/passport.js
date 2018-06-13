@@ -54,7 +54,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' : email }, function(err, user) {
+        User.findOne({ 'email' : email }, function(err, user) {
 
             //if there are any errors, return the error
             if (err)
@@ -71,18 +71,18 @@ module.exports = function(passport) {
                 var newUser = new User();
 
                 // set the user's local credentials 
-                newUser.local.email = email
-                newUser.local.password = newUser.generateHash(password);
+                newUser.email = email
+                newUser.password = newUser.generateHash(password);
 
                 // =================================================
                 // ==================NOTES==========================
                 // =================================================
                 // USER AND PASSWORD ARE BUILT IN ARGS SO WE NEED TO DENOTE REQ.BODY FOR ALL OTHER FORM DATA (BIRTHDAY, HEIGHT, FAV COLOR ...)
                 // BECAUSE THAT IS WHERE THE INFORMATION IS BEING STORED IN THE REQUEST 
-                newUser.local.firstnamelastname = req.body.firstnamelastname;
-                newUser.local.whereareyoufrom = req.body.whereareyoufrom;
-                newUser.local.relationship = req.body.relationship;
-                newUser.local.giftforex = req.body.giftforex;
+                newUser.firstnamelastname = req.body.firstnamelastname;
+                newUser.whereareyoufrom = req.body.whereareyoufrom;
+                newUser.relationship = req.body.relationship;
+                newUser.giftforex = req.body.giftforex;
 
 
                 // save the user
@@ -118,7 +118,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' : email }, function(err, user) {
+        User.findOne({ 'email' : email }, function(err, user) {
             // if there's an error we want it to pop first
             if (err)
                 return done(err);

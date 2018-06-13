@@ -92,20 +92,20 @@ module.exports = function(app, passport) {
               return res.status(400).json({ message: message });            
         } 
 
-        const toUpdate = {local: {}};
+        const toUpdate = {};
         const updateableFields = ['email', 'firstnamelastname', 'whereareyoufrom', 'relationship', 'giftforex'];
         console.log(req.body);
 
         updateableFields.forEach(field => {
             if (field in req.body) {
-              toUpdate.local[field] = req.body[field];
+              toUpdate[field] = req.body[field];
             }
         });
-        console.log('hhhhhhhhhh',toUpdate);
+        console.log('hhhhhhhhhh',toUpdate); 
         console.log(req.params.id);
         User
         //going to use $set to update all the keyvalue pairs
-            .findByIdAndUpdate(req.params.id, {$set: toUpdate})
+            .findByIdAndUpdate(req.params.id, toUpdate)
             .then(user => res.status(204).end())
             .catch(err => res.status(500).json({ message: 'Ooops this was coded by a noob; internal server error'}));       
     });
