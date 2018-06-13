@@ -117,10 +117,13 @@ module.exports = function(app, passport) {
     console.log('delete function');
     //need match up the ids so that we're editing the right info
     if (!(req.params.id && req.body.id === req.body.id)) {
-      console.log('delete id\' aint matchin')};
+      console.log('delete id\' aint matchin');
+    }
     
     User
-      .findByIdAndDelete(req.params.id);
+      .findByIdAndDelete(req.params.id)
+      .then(user => res.status(204).end())
+      .catch(err => res.status(500));
 
   }); 
 
