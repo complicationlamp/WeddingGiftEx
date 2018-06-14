@@ -5,10 +5,8 @@ var $ = require('jquery');
 let randomUser;
 
 $(function() {
-  console.log('before the button');
   $('#randomBtn').on('click', function() {
-    console.log('inside the btn');
-
+    
     //============ESHA NOTES==============
     // This makes a request to route `/randomUser`
     // See note on line 21 for more info

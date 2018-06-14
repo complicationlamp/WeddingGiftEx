@@ -34,6 +34,7 @@ module.exports = function(app, passport) {
     failureFlash : true // allow flash messages EDIT
   }));
 
+
   // =====================================
   // SIGNUP ==============================
   // =====================================
@@ -42,7 +43,13 @@ module.exports = function(app, passport) {
     // render the page and pass in any flash data if it exists
     res.render('signup.ejs', {message: req.flash('signupMessage')});
   });
-    
+  
+  app.get('/data', isLoggedIn, function(req,res) {
+    console.log(req.cookies);
+    res.send('ok');
+  });
+
+
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile', //redirect to secure profile section
@@ -68,8 +75,8 @@ module.exports = function(app, passport) {
 
   app.get('/updateInfo', isLoggedIn, function(req, res) {
     //this will break if you take out the flash message. Why do you ask? Well this
-    // is a great reading opertunity
-    res.render('updateInfo.ejs', {message: req.flash('updateMessage')    
+    // res.render passes the req.user object to updateInfo 
+    res.render('updateInfo.ejs', {message: req.flash('updateMessage'), user: req.user    
     });
   });
 
@@ -99,8 +106,7 @@ module.exports = function(app, passport) {
         toUpdate[field] = req.body[field];
       }
     });
-    // console.log('hhhhhhhhhh',toUpdate); 
-    // console.log(req.params.id);
+
     User
 
       .findByIdAndUpdate(req.params.id, toUpdate)
@@ -127,6 +133,11 @@ module.exports = function(app, passport) {
 
   }); 
 
+  app.use(function(req, res, next){
+    res.locals.user = req.session.user;
+    console.log(req.session.user);
+    next();
+  });
 
   //======================================
   // FIND A RANDOM USER ==================
@@ -173,3 +184,9 @@ function isLoggedIn(req, res, next) {
     //if they aren't redirect them home
   res.redirect('/'); 
 }
+
+
+
+
+
+

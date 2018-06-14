@@ -12,11 +12,15 @@
 <body>
 <div class="container">
 
-<!-- ================= -->
-<!-- running Header for navigation -->
-<!-- ================= -->
+<!-- ===================================================== -->
+<!-- running Header for navigation ======================= -->
+<!-- ===================================================== -->
 
 <header><% include partials/header.ejs %></header>
+
+<!-- ===================================================== -->
+<!-- Main Page =========================================== -->
+<!-- ===================================================== -->
 
 <div class="col-sm-6 col-sm-offset-3">
 
@@ -27,15 +31,12 @@
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-<!-- ===============================================================================
-===============================================================================
-NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS 
-===============================================================================
-=============================================================================== -->
+<!-- ===================================================== -->
+<!-- UPDATING INFO FORM ================================== -->
+<!-- ===================================================== -->
 
-
-    <!-- UPDATING INFO FORM -->
     <form action="/updateInfo" method="put">
+        <label><%= user.email %></label>
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email">
@@ -58,7 +59,7 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
         </div>
         
 
-        <button type="submit" class="btn btn-warning btn-lg">Update</button>
+        <button type="submit" data="<%= user.id %>" class="btn btn-warning btn-lg">Update</button>
                 
     </form>
 
@@ -75,7 +76,20 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
     crossorigin="anonymous">
 </script>
 
+<!-- ===================================================== -->
+<!-- Button functionality ================================ -->
+<!-- ===================================================== -->
+
 <script type="text/javascript">
+
+    // gets data attribute off button and stores it (the id) as a variable
+    const tempID = $("form button").attr("data");
+
+
+// <!-- ===================================================== -->
+// <!-- Update button functionality========================== -->
+// <!-- ===================================================== -->
+
     $("form").on("submit", function(e) {
         e.preventDefault();
         
@@ -90,10 +104,10 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
             toUpdate[input.name] = input.value;
         
         });
-        // do AJAX using this new object
+        
         console.log('inside update ejs', toUpdate)
         $.ajax({
-        url: '/profile/5b206dba0fc554024db09251',
+        url: `/profile/${tempID}`,
         type: 'PUT',
         data: JSON.stringify(toUpdate),
         contentType: 'application/json',
@@ -101,23 +115,24 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
         success: function(){
             window.location.href = '/profile'
         }
-
         })
     });
 
-    $("#deleteButton").on("click", function(e) {
-        console.log('inside the delete function');
+// <!-- ===================================================== -->
+// <!-- Delete button functionality========================== -->
+// <!-- ===================================================== -->
+
+    $("#deleteButton").on("click", function(req, res) {
         if (confirm("Are you sure you want to delete?")) {
             console.log('yes');
 
             $.ajax({
-                url: '/profile/5b21ae8453d603284d657405',
+                url: `/profile/${tempID}`,
                 type: 'delete',
                 success: function(){
                 window.location.href = '/'
             }
             })
-           
         
         } else {
             console.log('no')
@@ -125,11 +140,6 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
         
     })
 </script>
-
-<!-- delete button -->
-
-
-
 </div>
 </body>
 </html>
