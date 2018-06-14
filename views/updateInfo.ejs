@@ -65,7 +65,7 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
     <hr>
     <p>Go back to profile <a href="/profile">Profile</a></p>
     <p>Or go <a href="/">home</a>.</p>
-    <p> Over it?  <button type="button" class="btn btn-delete btn-sm">Delete Profile</button></p>
+    <p> Over it?  <button type="button" id="deleteButton" class="btn btn-delete btn-sm">Delete Profile</button></p>
 
 </div>
 
@@ -104,7 +104,31 @@ NEED!!! SOME SORT OF CALL AJAX? TO GET THE ID NUMBERS
 
         })
     });
+
+    $("#deleteButton").on("click", function(e) {
+        console.log('inside the delete function');
+        if (confirm("Are you sure you want to delete?")) {
+            console.log('yes');
+
+            $.ajax({
+                url: '/profile/5b21ae8453d603284d657405',
+                type: 'delete',
+                success: function(){
+                window.location.href = '/'
+            }
+            })
+           
+        
+        } else {
+            console.log('no')
+        };
+        
+    })
 </script>
+
+<!-- delete button -->
+
+
 
 </div>
 </body>
