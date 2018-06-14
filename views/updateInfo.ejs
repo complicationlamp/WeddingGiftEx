@@ -59,7 +59,7 @@
         </div>
         
 
-        <button type="submit" data="<%= user.id %>" class="btn btn-warning btn-lg">Update</button>
+        <button type="submit" data1="<%= user.id %>" data2="<%= user.firstnamelastname %>" class="btn btn-warning btn-lg">Update</button>
                 
     </form>
 
@@ -82,8 +82,11 @@
 
 <script type="text/javascript">
 
-    // gets data attribute off button and stores it (the id) as a variable
-    const tempID = $("form button").attr("data");
+    // gets data1 attribute off button and stores it (the id) as a variable
+    const tempID = $("form button").attr("data1");
+    // gets data2 attribute off button and stores it (name) as a variable
+    // name will be used as a simple auth 'type name to continue', then the delete
+    const tempName = $("form button").attr("data2");
 
 
 // <!-- ===================================================== -->
@@ -92,7 +95,8 @@
 
     $("form").on("submit", function(e) {
         e.preventDefault();
-        
+        console.log(tempID);
+        console.log(tempName)
         let toUpdate = {};
 
         $("form input").each(function(idx, input) {
