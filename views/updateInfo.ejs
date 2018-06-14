@@ -66,15 +66,16 @@
     <hr>
     <p>Go back to profile <a href="/profile">Profile</a></p>
     <p>Or go <a href="/">home</a>.</p>
-    <p> Over it?  <button type="button" id="deleteButton" class="btn btn-delete btn-sm">Delete Profile</button></p>
+    <!-- <p> Over it?  <button type="button" id="deleteButton" class="btn btn-delete btn-sm">Delete Profile</button></p> -->
 
-    <p id="delNameAuth"  style="display:none;"> Enter Name   <input type="name" id="yourName" name="yourName" /><br>
-    Re-Enter Name
-        <input type="name" id="reyourName" name="reyourName" />
+    <p id="delNameAuth"  style="display:none;"> Enter Name<br>
+        <input type="name" id="yourName" name="yourName" /><br>
+        Re-Enter Name
+        <input type="name" id="reyourName" name="reyourName"/>
         <span id='message'></span>
     </p>
-    <input type="button" name="answer" value="Show Div" onclick="showDelPath()" />
-    <input type="button" name="deleteBtn" value="DELETE ME" id="deleteBtn" style="display:none"
+    <input type="button" name="deleteToAuth" value="Delete" onclick="showDelPath()" class="btn btn-delete btn-sm" />
+    <input type="button" name="deleteBtn" value="DELETE PROFILE" id="deleteButton" style="display:none" class="btn btn-DEL2 btn-sm" />
 
 </div>
 <!-- adding delete checking ability  -->
@@ -149,7 +150,7 @@ rePassword
     $('#yourName, #reyourName').on('keyup', function () {
         if ($('#yourName').val() == $('#reyourName').val()) {
         $('#message').html('Matching').css('color', 'green');
-            document.getElementById('deleteBtn').style.display = "block";
+            document.getElementById('deleteButton').style.display = "block";
         
                 $("#deleteButton").on("click", function(req, res) {
                     if (confirm("Are you sure you want to delete?")) {
