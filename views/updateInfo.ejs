@@ -69,6 +69,15 @@
     <p> Over it?  <button type="button" id="deleteButton" class="btn btn-delete btn-sm">Delete Profile</button></p>
 
 </div>
+<!-- adding delete checking ability  -->
+<div id="welcomeDiv"  style="display:none;" class="answer_list" > Password
+    <input type="password" id="password" name="password" /><br>
+rePassword
+    <input type="password" id="rePassword" name="rePassword" />
+    <span id='message'></span>
+</div>
+<input type="button" name="answer" value="Show Div" onclick="showDiv()" />
+<input type="button" name="deleteBtn" value="DELETE ME" id="deleteBtn" style="display:none"
 
 <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -144,8 +153,6 @@
         };
         
     })
-
-
 
 
 // ===========================================================================================
