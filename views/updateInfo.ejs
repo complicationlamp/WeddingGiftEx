@@ -135,24 +135,38 @@ rePassword
 // <!-- ===================================================== -->
 // <!-- Delete button functionality========================== -->
 // <!-- ===================================================== -->
-
-    $("#deleteButton").on("click", function(req, res) {
-        if (confirm("Are you sure you want to delete?")) {
-            console.log('yes');
-
-            $.ajax({
-                url: `/profile/${tempID}`,
-                type: 'delete',
-                success: function(){
-                window.location.href = '/'
-            }
-            })
+    function showDiv() {
+    document.getElementById('welcomeDiv').style.display = "block";
+    
+    $('#password, #rePassword').on('keyup', function () {
+        if ($('#password').val() == $('#rePassword').val()) {
+        $('#message').html('Matching').css('color', 'green');
+            document.getElementById('deleteBtn').style.display = "block";
         
-        } else {
-            console.log('no')
-        };
-        
-    })
+                $("#deleteButton").on("click", function(req, res) {
+                    if (confirm("Are you sure you want to delete?")) {
+                        console.log('yes');
+
+                        $.ajax({
+                            url: `/profile/${tempID}`,
+                            type: 'delete',
+                            success: function(){
+                            window.location.href = '/'
+                            }
+                        });
+            
+            } else {
+                console.log('no')
+            };
+            
+        })
+
+        } else 
+        $('#message').html('Not Matching').css('color', 'red');
+    });
+
+    }
+    
 
 
 // ===========================================================================================
