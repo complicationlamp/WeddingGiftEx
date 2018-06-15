@@ -7,18 +7,29 @@
     <script src="../bundles/proCont.js"></script>
 
     <style>
-        body        { padding-top:80px; word-wrap:break-word; display: contents;text-align: center;}
+        body { 
+            padding-top:80px;
+            word-wrap:break-word;
+            display: contents;
+            text-align: center;
+            font-size: 2rem;
+            }
 
     </style>
 </head>
 <body>
 <div class="container" >
+    <div class="row">
+        <div class="col-md-10">
+            <!-- ================= -->
+            <!-- running Header for navigation -->
+            <!-- ================= -->
+            <header><% include partials/header.ejs %></header>
+        </div>
+    </div>
 
-<!-- ================= -->
-<!-- running Header for navigation -->
-<!-- ================= -->
-<header><% include partials/header.ejs %></header>
 
+</div>
 
 
 <div class="page-header text-center">
@@ -43,7 +54,6 @@
                     <strong>What is a small gift unique to where you live</strong>: <%= user.giftforex %><br>
 
                 </p>
-
 
                <a href="/updateInfo" > <button  id="changeInfo" class="btn btn-default btn-sm">Change Info</button> </a>                   
         </div>
