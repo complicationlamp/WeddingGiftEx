@@ -43,9 +43,11 @@ function seedUserData() {
       relationship        : faker.name.jobTitle(),
       giftforex           : faker.commerce.product()
     });
+    
   }
     
   return User.insertMany(seedData);
+  
 }
 
 // =====================================================
@@ -126,25 +128,13 @@ describe('gift exchange API that sometimes works', function() {
       };
 
       return chai.request(app)
-        .post('/users')
+        .post('/signup')
         .send(newUser)
         .then(function(res) {
-          expect(res).to.have.status(201);
-          expect(res).to.be.json;
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
           expect(res.body).to.be.a('object');
-          expect(res.body).to.include.keys('email', 'password', 'firstnamelastname', 'whereareyoufrom');
           expect(res.body.id).to.not.be.null;
-          expect(res.body.email).to.equal(newUser.email);
-          expect(res.body.password).to.equal(newUser.password);
-          expect(res.body.firstnamelastname).to.equal(newUser.firstnamelastname);
-          expect(res.body.whereareyoufrom).to.equal(newUser.whereareyoufrom);
-          return User.findById(res.body.id);
-        })
-        .then(function (post){
-          expect(post.email).to.equal(newUser.email);
-          expect(post.password).to.equal(newUser.password);
-          expect(post.firstnamelastname).to.equal(newUser.firstnamelastname);
-          expect(post.whereareyoufrom).to.equal(newUser.whereareyoufrom);
         });
     });
   });
@@ -161,7 +151,7 @@ describe('gift exchange API that sometimes works', function() {
     // prove returned data matches the info we sent 
     // prove user in db is correctly updated
         
-    it('should update fields selected', function() {
+    it.only('should update fields selected', function() {
       const updateData = {
         email               : 'test@testemail.com',
         password            : 'password', 
@@ -175,51 +165,54 @@ describe('gift exchange API that sometimes works', function() {
           updateData.id = user.id;
 
           return chai.request(app)
-            .put(`/users/${user.id}`)
-            .send(updateData);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
-      
-          return User.findById(updateData.id);
-        })
-        .then(function (post){
-          expect(post.email).to.equal(updateData.email);
-          expect(post.password).to.equal(updateData.password);
-          expect(post.firstnamelastname).to.equal(updateData.firstnamelastname);
-          expect(post.whereareyoufrom).to.equal(updateData.whereareyoufrom);
+            .put(`/profile/${user.id}`)
+            .send(updateData)
+            .then(function(res) {
+              expect(res).to.have.status(200);
+              console.log(res);
+              return User.findById(updateData.id)
+            
+                .then(function (post){
+                  console.log('XXX', post);
+                  expect(post.email).to.equal(updateData.email);
+                  expect(post.password).to.equal(updateData.password);
+                  expect(post.firstnamelastname).to.equal(updateData.firstnamelastname);
+                  expect(post.whereareyoufrom).to.equal(updateData.whereareyoufrom);
+                });
+            });
         });
     });
-  });
     
-  // ===========================================================
-  // Testing DELETE endpoints===================================
-  // ===========================================================
+    // ===========================================================
+    // Testing DELETE endpoints===================================
+    // ===========================================================
 
-  describe('DELETE endpoint', function() {
+    describe('DELETE endpoint', function() {
     // strategy:
     // get and existing user from db
     // make a delete request for that users id
     // check that the status code is correct 
     // prove that id is no longer in the db
 
-    it('should delete a post by the ID', function() {
+      it('should delete a post by the ID', function() {
 
-      let user;
+        let user;
 
-      return User
-        .findOne()
-        .then(function(_user) {
-          _user = user;
-          return chai.request(app).delete(`/users/${user.id}`);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
-          return User.findById(user.id);
-        })
-        .then(function(_user) {
-          expect(_user).to.be.null;
-        });
+        return User
+          .findOne()
+          .then(function(_user) {
+            _user = user;
+            return chai.request(app).delete(`/users/${user.id}`);
+          })
+          .then(function(res) {
+            expect(res).to.have.status(204);
+            return User.findById(user.id);
+          })
+          .then(function(_user) {
+            expect(_user).to.be.null;
+          });
+      });
+
     });
   });
-});
+});  
