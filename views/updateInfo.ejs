@@ -66,16 +66,15 @@
     <hr>
     <p>Go back to profile <a href="/profile">Profile</a></p>
     <p>Or go <a href="/">home</a>.</p>
-    <!-- <p> Over it?  <button type="button" id="deleteButton" class="btn btn-delete btn-sm">Delete Profile</button></p> -->
-
-    <p id="delNameAuth"  style="display:none;"> Enter Name<br>
+    
+    <p id="delNameAuth"  style="display:none;"> Enter Name:<br>
         <input type="name" id="yourName" name="yourName" /><br>
-        Re-Enter Name
+        Re-Enter Name: <br>
         <input type="name" id="reyourName" name="reyourName"/>
         <span id='message'></span>
     </p>
-    <input type="button" name="deleteToAuth" value="Delete" onclick="showDelPath()" class="btn btn-delete btn-sm" />
-    <input type="button" name="deleteBtn" value="DELETE PROFILE" id="deleteButton" style="display:none" class="btn btn-DEL2 btn-sm" />
+    <input type="button" name="deleteToAuth" value="Delete" id="delBeforeAuth" onclick="showDelPath()" class="btn btn-delete btn-sm" />
+    <input type="button" name="deleteBtn" value="DELETE PROFILE" id="deleteButton" style="display:none" class="btn btn-danger btn-lg" />              
 
 </div>
 <!-- adding delete checking ability  -->
@@ -150,6 +149,7 @@ rePassword
     $('#yourName, #reyourName').on('keyup', function () {
         if ($('#yourName').val() == $('#reyourName').val()) {
         $('#message').html('Matching').css('color', 'green');
+            document.getElementById('delBeforeAuth').style.display = "none";
             document.getElementById('deleteButton').style.display = "block";
         
                 $("#deleteButton").on("click", function(req, res) {
@@ -176,28 +176,6 @@ rePassword
 
     }
     
-
-
-// ===========================================================================================
-// ========================SAVED CODE FROM DELETE ABOVE PREEDIT WORKING=======================
-// ===========================================================================================
-    // $("#deleteButton").on("click", function(req, res) {
-    //     if (confirm("Are you sure you want to delete?")) {
-    //         console.log('yes');
-
-    //         $.ajax({
-    //             url: `/profile/${tempID}`,
-    //             type: 'delete',
-    //             success: function(){
-    //             window.location.href = '/'
-    //         }
-    //         })
-        
-    //     } else {
-    //         console.log('no')
-    //     };
-        
-    // })
 </script>
 </div>
 </body>
