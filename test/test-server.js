@@ -131,6 +131,7 @@ describe('gift exchange API that sometimes works', function() {
         .post('/signup')
         .send(newUser)
         .then(function(res) {
+          console.log(res.body.id)
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.body).to.be.a('object');
@@ -169,7 +170,7 @@ describe('gift exchange API that sometimes works', function() {
             .send(updateData)
             .then(function(res) {
               expect(res).to.have.status(200);
-              console.log(res);
+              console.log(res.body);
               return User.findById(updateData.id)
             
                 .then(function (post){
