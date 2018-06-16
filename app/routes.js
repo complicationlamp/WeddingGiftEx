@@ -44,9 +44,8 @@ module.exports = function (app, passport) {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
 
-  app.get('/data', isLoggedIn, function (req, res) {
-    console.log(req.cookies);
-    res.send('ok');
+  app.get('/data', function (req, res) {
+    res.json({ message: 'Foo' });
   });
 
 

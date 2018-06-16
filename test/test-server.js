@@ -14,8 +14,18 @@ const { app, runServer, closeServer } = require('../server');
 const DATABASE = require('../config/database');
 const TEST_DATABASE_URL = DATABASE.test;
 
+
 chai.use(chaiHttp);
 
+
+const testUser = {
+  email: 'foo@bar.com',
+  password: 'password',
+  firstnamelastname: faker.name.findName(),
+  whereareyoufrom: faker.address.country(),
+  relationship: faker.name.jobTitle(),
+  giftforex: faker.commerce.product()
+};
 
 // ======================================================
 // Tearing the database down=============================
@@ -101,9 +111,25 @@ describe('gift exchange API that sometimes works', function () {
   // Testing GET endpoints======================================
   // ===========================================================
 
+  describe('GET endpoints', function () {
+    it('should get protected data', function () {
+      // app.use(function (req, res, next) {
 
+      //   console.log('in the middleware!')
+      //   req.isAuthenticated = true;
+      //   req.user = {};
 
-
+      //   next();
+      // });
+      return chai
+        .request(app)
+        .get('/data')
+        .then(function (res) {
+          expect(res).to.have.status(200);
+          console.log(res);
+        });
+    });
+  });
 
 
   // ===========================================================
