@@ -121,7 +121,7 @@ module.exports = function (app, passport) {
   // Delete user profile===========================================
   // ==============================================================
 
-  app.delete('/profile/:id', isLoggedIn, (req, res) => {
+  app.delete('/profile/:id', (req, res) => {
     console.log('delete function');
     //need match up the ids so that we're editing the right info
     if (!(req.params.id && req.body.id === req.body.id)) {

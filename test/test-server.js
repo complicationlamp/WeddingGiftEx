@@ -152,7 +152,7 @@ describe('gift exchange API that sometimes works', function () {
     // prove returned data matches the info we sent 
     // prove user in db is correctly updated
 
-    it.only('should update fields selected', function () {
+    it('should update fields selected', function () {
       const updateData = {
         email: 'test@testemail.com',
         // password: 'password',
@@ -182,40 +182,41 @@ describe('gift exchange API that sometimes works', function () {
               expect(post.firstnamelastname).to.equal(updateData.firstnamelastname);
               expect(post.whereareyoufrom).to.equal(updateData.whereareyoufrom);
             });
+        });
+    });
+  });
 
+  // ===========================================================
+  // Testing DELETE endpoints===================================
+  // ===========================================================
+
+  describe('DELETE endpoint', function () {
+    // strategy:
+    // get and existing user from db
+    // make a delete request for that users id
+    // check that the status code is correct 
+    // prove that id is no longer in the db
+
+    it('should delete a post by the ID', function () {
+
+      let user;
+
+      return User
+        .findOne()
+        .then(function (_user) {
+          user = _user;
+          console.log(user)
+          return chai.request(app).delete(`/profile/${user.id}`);
+        })
+        .then(function (res) {
+          expect(res).to.have.status(204);
+          return User.findById(user.id);
+        })
+        .then(function (_user) {
+          console.log(_user)
+          expect(_user).to.be.null;
         });
     });
 
-    // ===========================================================
-    // Testing DELETE endpoints===================================
-    // ===========================================================
-
-    describe('DELETE endpoint', function () {
-      // strategy:
-      // get and existing user from db
-      // make a delete request for that users id
-      // check that the status code is correct 
-      // prove that id is no longer in the db
-
-      it('should delete a post by the ID', function () {
-
-        let user;
-
-        return User
-          .findOne()
-          .then(function (_user) {
-            _user = user;
-            return chai.request(app).delete(`/users/${user.id}`);
-          })
-          .then(function (res) {
-            expect(res).to.have.status(204);
-            return User.findById(user.id);
-          })
-          .then(function (_user) {
-            expect(_user).to.be.null;
-          });
-      });
-
-    });
   });
 });  
