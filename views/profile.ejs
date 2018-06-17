@@ -43,47 +43,36 @@
 <div class="row" style="text-align: center; display: ruby;">
     <div class="col-lg-6 col-sm-9 col-xs-12">
 
-        <!-- LOCAL INFORMATION -->
-        <div  ;>
-            <div class="well" >
-                <h3><span class="fa fa-user"></span> <%= user.firstnamelastname %></h3>
-
-                    <p>
-                        <!-- <strong>id</strong>: <%= user._id %><br> -->
-                        <strong>Name</strong>: <%= user.firstnamelastname %><br>
-                        <strong>email</strong>: <%= user.email %><br>
-                        <!-- <strong>password</strong>: <%= user.password %><br> -->
-                        <strong>Location</strong>: <%= user.whereareyoufrom %><br>
-                        <strong>Relationship</strong>: <%= user.relationship %><br>
-                        <strong>What is a small gift unique to where you live</strong>: <%= user.giftforex %><br>
-
-                    </p>
-
-                <a href="/updateInfo" > <button  id="changeInfo" class="btn btn-default btn-sm">Change Info</button> </a>                   
-            </div>
+        <!-- USER INFORMATION -->
+        
+        <div class="well" >
+            <h3><span class="fa fa-user"></span> <%= user.firstnamelastname %></h3>
+                <p>
+                    <!-- <strong>id</strong>: <%= user._id %><br> -->
+                    <strong>Name</strong>: <%= user.firstnamelastname %><br>
+                    <strong>email</strong>: <%= user.email %><br>
+                    <!-- <strong>password</strong>: <%= user.password %><br> -->
+                    <strong>Location</strong>: <%= user.whereareyoufrom %><br>
+                    <strong>Relationship</strong>: <%= user.relationship %><br>
+                    <strong>What is a small gift unique to where you live</strong>: <%= user.giftforex %><br>
+                </p>
+            <a href="/updateInfo" > <button  id="changeInfo" class="btn btn-default btn-sm">Change Info</button> </a>                   
         </div>
-
     </div>
 
     <div class="col-lg-6 col-sm-9 col-xs-12" style="text-align: center">
-
-        <!-- LOCAL INFORMATION -->
-        <div >
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Random Match</h3>
-                <button id="randomBtn" class="btn btn-default btn-sm">FIND YOUR MATCH!</button>
-                    <p id="TC">
-                        <!-- <strong class="randomUsrClass">Name</strong>: 'John'<br>
-                        <strong>email</strong>: ----<br>
-                        <strong>Location</strong>: ${randomUser}<br>
-                        <strong>Relationship</strong>: ----<br>
-                        <strong>What is a small gift unique to where you live</strong>: ---<br> -->
-                        
-                    </p>                                        
-            </div>
+        <!-- RANDOM INFORMATION -->     
+        <div class="well">
+            <h3><span class="fa fa-user"></span> Random Match</h3>
+            <button id="randomBtn" class="btn btn-default btn-sm">FIND YOUR MATCH!</button>
+                <p id="TC">
+                    <!-- <strong class="randomUsrClass">Name</strong>: 'John'<br>
+                    <strong>email</strong>: ----<br>
+                    <strong>Location</strong>: ${randomUser}<br>
+                    <strong>Relationship</strong>: ----<br>
+                    <strong>What is a small gift unique to where you live</strong>: ---<br> -->        
+                </p>                                        
         </div>
-
-
     </div>
 </div>
 
