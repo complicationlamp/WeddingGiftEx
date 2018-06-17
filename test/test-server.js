@@ -231,7 +231,7 @@ describe('gift exchange API that sometimes works', function () {
         .findOne()
         .then(function (_user) {
           user = _user;
-          console.log(user)
+          console.log(user);
           return chai.request(app).delete(`/profile/${user.id}`);
         })
         .then(function (res) {
@@ -239,7 +239,7 @@ describe('gift exchange API that sometimes works', function () {
           return User.findById(user.id);
         })
         .then(function (_user) {
-          console.log(_user)
+          console.log(_user);
           expect(_user).to.be.null;
         });
     });
