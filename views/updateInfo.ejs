@@ -15,173 +15,166 @@
     </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
+        <img src="../app/images/l8W6Iu.jpg" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
 
-<!-- ===================================================== -->
-<!-- running Header for navigation ======================= -->
-<!-- ===================================================== -->
+        <!-- ===================================================== -->
+        <!-- running Header for navigation ======================= -->
+        <!-- ===================================================== -->
 
-<header><% include partials/header.ejs %></header>
+        <header><% include partials/header.ejs %></header>
 
-<!-- ===================================================== -->
-<!-- Main Page =========================================== -->
-<!-- ===================================================== -->
+        <!-- ===================================================== -->
+        <!-- Main Page =========================================== -->
+        <!-- ===================================================== -->
+    </div>
 
-<div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3">
 
-    <h1><span class="fa fa-sign-in"></span> Update Your Info</h1>
+        <h1><span class="fa fa-sign-in"></span> Update Your Info</h1>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
 
-<!-- ===================================================== -->
-<!-- UPDATING INFO FORM ================================== -->
-<!-- ===================================================== -->
+        <!-- ===================================================== -->
+        <!-- UPDATING INFO FORM ================================== -->
+        <!-- ===================================================== -->
 
-    <form action="/updateInfo" method="put">
-        <label><%= user.email %></label>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" name="firstnamelastname">
-        </div>
-        <div class="form-group">
-                <label>Location</label>
-                <input type="text" class="form-control" name="whereareyoufrom">
-        </div>
-        <div class="form-group">
-                <label>How do you know the Bride or Groom?</label>
-                <input type="text" class="form-control" name="relationship">
-        </div>
-        <div class="form-group">
-                <label>What unique local item are you bringing as a gift to exchange?</label>
-                <input type="text" class="form-control" name="giftforex">
-        </div>
+        <form action="/updateInfo" method="put">
+            <label><%= user.email %></label>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="firstnamelastname">
+            </div>
+            <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" class="form-control" name="whereareyoufrom">
+            </div>
+            <div class="form-group">
+                    <label>How do you know the Bride or Groom?</label>
+                    <input type="text" class="form-control" name="relationship">
+            </div>
+            <div class="form-group">
+                    <label>What unique local item are you bringing as a gift to exchange?</label>
+                    <input type="text" class="form-control" name="giftforex">
+            </div>
+            
+
+            <button type="submit" data1="<%= user.id %>" data2="<%= user.firstnamelastname %>" class="btn btn-warning btn-lg">Update</button>
+                    
+        </form>
+
+        <hr>
+        <p>Go back to profile <a href="/profile">Profile</a></p>
+        <p>Or go <a href="/">home</a>.</p>
         
+        <p id="delNameAuth"  style="display:none;"> Enter Name:<br>
+            <input type="name" id="yourName" name="yourName" /><br>
+            Re-Enter Name: <br>
+            <input type="name" id="reyourName" name="reyourName"/>
+            <span id='message'></span>
+        </p>
+        <input type="button" name="deleteToAuth" value="Delete" id="delBeforeAuth" onclick="showDelPath()" class="btn btn-delete btn-sm" />
+        <input type="button" name="deleteBtn" value="DELETE PROFILE" id="deleteButton" style="display:none" class="btn btn-danger btn-lg" />              
 
-        <button type="submit" data1="<%= user.id %>" data2="<%= user.firstnamelastname %>" class="btn btn-warning btn-lg">Update</button>
-                
-    </form>
+    </div>
 
-    <hr>
-    <p>Go back to profile <a href="/profile">Profile</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-    
-    <p id="delNameAuth"  style="display:none;"> Enter Name:<br>
-        <input type="name" id="yourName" name="yourName" /><br>
-        Re-Enter Name: <br>
-        <input type="name" id="reyourName" name="reyourName"/>
-        <span id='message'></span>
-    </p>
-    <input type="button" name="deleteToAuth" value="Delete" id="delBeforeAuth" onclick="showDelPath()" class="btn btn-delete btn-sm" />
-    <input type="button" name="deleteBtn" value="DELETE PROFILE" id="deleteButton" style="display:none" class="btn btn-danger btn-lg" />              
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
 
-</div>
-<!-- adding delete checking ability  -->
-<!-- <div id="welcomeDiv"  style="display:none;" class="answer_list" > Password
-    <input type="password" id="password" name="password" /><br>
-rePassword
-    <input type="password" id="rePassword" name="rePassword" />
-    <span id='message'></span>
-</div>
-<input type="button" name="answer" value="Show Div" onclick="showDiv()" />
-<input type="button" name="deleteBtn" value="DELETE ME" id="deleteBtn" style="display:none" -->
+    <!-- ===================================================== -->
+    <!-- Button functionality ================================ -->
+    <!-- ===================================================== -->
 
-<script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-</script>
+    <script type="text/javascript">
 
-<!-- ===================================================== -->
-<!-- Button functionality ================================ -->
-<!-- ===================================================== -->
-
-<script type="text/javascript">
-
-    // gets data1 attribute off button and stores it (the id) as a variable
-    const tempID = $("form button").attr("data1");
-    // gets data2 attribute off button and stores it (name) as a variable
-    // name will be used as a simple auth 'type name to continue', then the delete
-    const tempName = $("form button").attr("data2");
+        // gets data1 attribute off button and stores it (the id) as a variable
+        const tempID = $("form button").attr("data1");
+        // gets data2 attribute off button and stores it (name) as a variable
+        // name will be used as a simple auth 'type name to continue', then the delete
+        const tempName = $("form button").attr("data2");
 
 
-// <!-- ===================================================== -->
-// <!-- Update button functionality========================== -->
-// <!-- ===================================================== -->
+    // <!-- ===================================================== -->
+    // <!-- Update button functionality========================== -->
+    // <!-- ===================================================== -->
 
-    $("form").on("submit", function(e) {
-        e.preventDefault();
-        console.log(tempID);
-        console.log(tempName)
-        let toUpdate = {};
+        $("form").on("submit", function(e) {
+            e.preventDefault();
+            console.log(tempID);
+            console.log(tempName)
+            let toUpdate = {};
 
-        $("form input").each(function(idx, input) {
-        // input is a DOM node
-        // each input has a unique name attribute
-        
-        // if value empty, stop this iteration
-            if (input.value === '') { return; }
-            toUpdate[input.name] = input.value;
-        
+            $("form input").each(function(idx, input) {
+            // input is a DOM node
+            // each input has a unique name attribute
+            
+            // if value empty, stop this iteration
+                if (input.value === '') { return; }
+                toUpdate[input.name] = input.value;
+            
+            });
+            
+            console.log('inside update ejs', toUpdate)
+            $.ajax({
+            url: `/profile/${tempID}`,
+            type: 'PUT',
+            data: JSON.stringify(toUpdate),
+            contentType: 'application/json',
+            // this will allow the submit action to nav back after updating the db
+            success: function(){
+                window.location.href = '/profile'
+            }
+            })
         });
+
+
+    // <!-- ===================================================== -->
+    // <!-- Delete button functionality========================== -->
+    // <!-- ===================================================== -->
+        function showDelPath() {
+        document.getElementById('delNameAuth').style.display = "block";
         
-        console.log('inside update ejs', toUpdate)
-        $.ajax({
-        url: `/profile/${tempID}`,
-        type: 'PUT',
-        data: JSON.stringify(toUpdate),
-        contentType: 'application/json',
-        // this will allow the submit action to nav back after updating the db
-        success: function(){
-            window.location.href = '/profile'
+        $('#yourName, #reyourName').on('keyup', function () {
+            if ($('#yourName').val() == $('#reyourName').val()) {
+            $('#message').html('Matching').css('color', 'green');
+                document.getElementById('delBeforeAuth').style.display = "none";
+                document.getElementById('deleteButton').style.display = "block";
+            
+                    $("#deleteButton").on("click", function(req, res) {
+                        if (confirm("Are you sure you want to delete?")) {
+                            console.log('yes');
+
+                            $.ajax({
+                                url: `/profile/${tempID}`,
+                                type: 'delete',
+                                success: function(){
+                                window.location.href = '/'
+                                }
+                            });
+                
+                } else {
+                    console.log('no')
+                };
+                
+            })
+
+            } else 
+            $('#message').html('Not Matching').css('color', 'red');
+        });
+
         }
-        })
-    });
-
-
-// <!-- ===================================================== -->
-// <!-- Delete button functionality========================== -->
-// <!-- ===================================================== -->
-    function showDelPath() {
-    document.getElementById('delNameAuth').style.display = "block";
-    
-    $('#yourName, #reyourName').on('keyup', function () {
-        if ($('#yourName').val() == $('#reyourName').val()) {
-        $('#message').html('Matching').css('color', 'green');
-            document.getElementById('delBeforeAuth').style.display = "none";
-            document.getElementById('deleteButton').style.display = "block";
         
-                $("#deleteButton").on("click", function(req, res) {
-                    if (confirm("Are you sure you want to delete?")) {
-                        console.log('yes');
+    </script>
 
-                        $.ajax({
-                            url: `/profile/${tempID}`,
-                            type: 'delete',
-                            success: function(){
-                            window.location.href = '/'
-                            }
-                        });
-            
-            } else {
-                console.log('no')
-            };
-            
-        })
-
-        } else 
-        $('#message').html('Not Matching').css('color', 'red');
-    });
-
-    }
-    
-</script>
-</div>
 </body>
 </html>
