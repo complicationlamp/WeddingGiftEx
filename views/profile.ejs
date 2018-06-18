@@ -38,7 +38,6 @@
 
 <div class="page-header text-center">
     <h1><span class="fa fa-id-card-o"></span><strong>Profile Page</strong></h1>
-    <!-- <a href="/logout" class="btn btn-default btn-sm">Logout</a> -->
 </div>
 <div class="row" style="text-align: center; display: ruby;">
     <div class="col-lg-6 col-sm-9 col-xs-12">
@@ -48,15 +47,13 @@
         <div class="well" >
             <h3><span class="fa fa-user"></span> <%= user.firstnamelastname %></h3>
                 <p>
-                    <!-- <strong>id</strong>: <%= user._id %><br> -->
                     <strong>Name</strong>: <%= user.firstnamelastname %><br>
                     <strong>email</strong>: <%= user.email %><br>
-                    <!-- <strong>password</strong>: <%= user.password %><br> -->
                     <strong>Location</strong>: <%= user.whereareyoufrom %><br>
                     <strong>Relationship</strong>: <%= user.relationship %><br>
                     <strong>What is a small gift unique to where you live</strong>: <%= user.giftforex %><br>
-                </p>
-            <a href="/updateInfo" > <button  id="changeInfo" class="btn btn-default btn-sm">Change Info</button> </a>                   
+                </p>         
+            <a href="/updateInfo" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-wrench"></span> Change Info</a>                   
         </div>
     </div>
 
@@ -64,14 +61,8 @@
         <!-- RANDOM INFORMATION -->     
         <div class="well">
             <h3><span class="fa fa-user"></span> Random Match</h3>
-            <button id="randomBtn" class="btn btn-default btn-sm">FIND YOUR MATCH!</button>
-                <p id="TC">
-                    <!-- <strong class="randomUsrClass">Name</strong>: 'John'<br>
-                    <strong>email</strong>: ----<br>
-                    <strong>Location</strong>: ${randomUser}<br>
-                    <strong>Relationship</strong>: ----<br>
-                    <strong>What is a small gift unique to where you live</strong>: ---<br> -->        
-                </p>                                        
+            <button id="randomBtn" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-transfer"></span> Find Your Match</button>
+                <p id="TC"></p>                                        
         </div>
     </div>
 </div>
