@@ -20,12 +20,21 @@
     <div class="container">
         <img src="../app/images/l8W6Iu.jpg" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
 
+<<<<<<< HEAD
         <!-- ========================================================= -->
         <!-- running Header for navigation =========================== -->
         <!-- ========================================================= -->
         
         <header><% include partials/header.ejs %></header>
             <div class="col-sm-6 col-sm-offset-3">
+=======
+    <!-- ================= -->
+    <!-- running Header for navigation -->
+    <!-- ================= -->
+    <header><% include partials/header.ejs %></header>
+    <div class="container">
+        <div class="col-lg-8">
+>>>>>>> layout/styalizingPages
 
                 <h1><span class="fa fa-sign-in"></span> Login</h1>
 
@@ -34,6 +43,7 @@
                     <div class="alert alert-danger"><%= message %></div>
                 <% } %>
 
+<<<<<<< HEAD
                 <!-- LOGIN FORM -->
                 <form action="/login" method="post">
                     <div class="form-group">
@@ -49,6 +59,24 @@
                 <p>Need an account? <a href="/signup">Signup</a></p>
                 <p>Or go <a href="/">home</a>.</p>
             </div>
+=======
+            <!-- LOGIN FORM -->
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+            <p>Need an account? <a href="/signup">Signup</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+        </div>
+    </div>
+>>>>>>> layout/styalizingPages
 
     </div>
 </body>
