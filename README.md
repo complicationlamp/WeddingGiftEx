@@ -7,3 +7,15 @@ SUMMARY: The app is a way for useres to signup to take part in a small gift exch
 THE API:  the api is set up to register and store user information and to randomly pair a user with another user also registered to the site. Users are not confined to the user they are matched with and can submit as many matches as the desier. 
 
 TECHNOLOGY USED: This app is built with: HTML, CSS, JS Jquery, node, mocha and CHi (for testing), broserfy(to allow everything to render in a browser), Templating via EJS and styling with the use of Bootstrap. The app is tested with Travis CI, deployed via Heroku, and querys a database in Mlab. 
+
+Home Screen
+![screen shot of landing page](https://raw.githubusercontent.com/complicationlamp/WeddingGiftEx/master/app/images/index.PNG)
+
+Login page
+![screen shot of landing page](https://raw.githubusercontent.com/complicationlamp/WeddingGiftEx/master/app/images/login.PNG)
+
+Update info, similar to signup, but has delete ability
+![screen shot of landing page](https://raw.githubusercontent.com/complicationlamp/WeddingGiftEx/master/app/images/updateAndDelete.PNG)
+
+Profile Page
+![screen shot of landing page](https://raw.githubusercontent.com/complicationlamp/WeddingGiftEx/master/app/images/profile.PNG)
