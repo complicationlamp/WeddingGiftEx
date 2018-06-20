@@ -51,11 +51,11 @@ $(function() {
 function addingRandomUser() {
     console.log('after object', randomUser);
     $('#TC').html(`
-    <strong>Name</strong>: ${randomUser.local.firstnamelastname}<br>
-    <strong>email</strong>: ${randomUser.local.email}<br>
-    <strong>Location</strong>: ${randomUser.local.whereareyoufrom}<br>
-    <strong>Relationship</strong>:${randomUser.local.relationship}<br>
-    <strong>What is a small gift unique to where you live</strong>: ${randomUser.local.giftforex}<br>
+    <strong>Name</strong>: ${randomUser.firstnamelastname}<br>
+    <strong>email</strong>: ${randomUser.email}<br>
+    <strong>Location</strong>: ${randomUser.whereareyoufrom}<br>
+    <strong>Relationship</strong>:${randomUser.relationship}<br>
+    <strong>What is a small gift unique to where you live</strong>: ${randomUser.giftforex}<br>
     `)}	
 
 },{"jquery":2}],2:[function(require,module,exports){
