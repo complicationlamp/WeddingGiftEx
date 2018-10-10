@@ -11,15 +11,16 @@
             margin:50px;
             display: contents;
             font-size: 2rem;
-            color:#c6c6c6;
+            color:white;
             };
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <img src="../app/images/l8W6Iu.jpg" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
-
+    <div >
+        <img src="../app/images/geometric-wallpaper-6.jpg" alt="background squares" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
+        <img src="../app/images/Gift-Ribbon-Red.png" alt="png-overlay-ribbion" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
+        
         <!-- ========================================================= -->
         <!-- running Header for navigation =========================== -->
         <!-- ========================================================= -->
@@ -27,10 +28,10 @@
         <header><% include partials/header.ejs %></header>
         <div class="container">
             <div> 
-                <div class=" col-lg-4 loginInfoEx" style="color: darkorange">
+                <div class=" col-lg-4 loginInfoEx" style="color: white">
                         <h2>(Testing & Editing) EXAMPLE USER NAME AND PASSWORD</h2>
-                        <p><strong style="color: rgb(252, 252, 252)">Email:</strong>steve@steve.com</p>
-                        <p><strong style="color: rgb(252, 252, 252)">Password:</strong>steve</p>
+                        <p><strong style="color: white">Email:</strong>steve@steve.com</p>
+                        <p><strong style="color: white">Password:</strong>steve</p>
                 </div>
                 
                 <div class="col-lg-8" style>
@@ -52,10 +53,10 @@
                             <label>Password</label>
                             <input type="password" class="form-control" name="password">
                         </div>
-                        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+                        <button type="submit" class="btn btn-warning btn-lg" style="background-color: #ff9600; color:white">Login</button>
                     </form>
-                    <p>Need an account? <a href="/signup">Signup</a></p>
-                    <p>Or go <a href="/">home</a>.</p>
+                    <p>Need an account? <a href="/signup"><strong>Signup</strong></a></p>
+                    <p>Or go <a href="/"><stong>Home</stong></a></p>
                 </div>
 
 
