@@ -1,53 +1,42 @@
 <!doctype html>
 <html>
-<head>
-    <title>Gift Exchange</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-</head>
-    <style>
-        body { 
-            margin:50px;
-            display: contents;
-            font-size: 2rem;
-            }
-        .jumbotron {
-            background:rgba(182, 214, 219, 0.8);
-            };
-    </style>
-</head>
-<body>
-<div class="page" style="width:100%; padding-right:0%; padding-left:0%">
-    <img src="../app/images/geometric-wallpaper-6.jpg" alt="background squares" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
-    <img src="../app/images/Gift-Ribbon-Red.png" alt="png-overlay-ribbion" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
-
-    <!-- ================= -->
-    <!-- running Header for navigation -->
-    <!-- ================= -->
-    <header><% include partials/header.ejs %></header>
-    <div class="container">
-        <div class="jumbotron col-lg-12 text-center">
-            <h1><span class="fa fa-gift"></span> Wedding Gift Exchange</h1>
-
-            <p><strong> It is our sincere hope that you will get to know the new
-                members of your family at this wedding. As we are in love 
-                with traveling, we ask that you bring a few small gifts local 
-                to where you are from or where you live, to exchange with members 
-                of the other families in attendance. <br>
-
-                Please don't make the gifts expensive and remember that this is
-                the perfect opportunity to share your culture with people who may 
-                have never heard of Columbus, Ohio, or Hyderabad, Telangana. 
-            </strong></p>
-
-            <!-- ==================================================== -->
-            <!-- login links moved to floating header -->
-            <!-- ==================================================== -->
-            <!-- <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a> -->
-            <!-- <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a> -->
+    <head>
+        <title>Gift Exchange</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    </head>
+        <style>
+            body { 
+                margin:50px;
+                display: contents;
+                font-size: 2rem;
+                }
+            .jumbotron {
+                background:rgba(182, 214, 219, 0.8);
+                };
+        </style>
+    </head>
+    <body>
+        <div class="page" style="width:100%; padding-right:0%; padding-left:0%">
+            <img src="../app/images/geometric-wallpaper-6.jpg" alt="background squares" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
+            <img src="../app/images/Gift-Ribbon-Red.png" alt="png-overlay-ribbion" style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' draggable="false">
+            <!-- ================= -->
+            <!-- running Header for navigation -->
+            <!-- ================= -->
+            <header><% include partials/header.ejs %></header>
+            <div class="container">
+                <div class="jumbotron col-lg-12 text-center">
+                    <h1><span class="fa fa-gift"></span> Wedding Gift Exchange</h1>
+                    <p><strong> 
+                        Want to share more about your culture? <br/> 
+                        Have a gift someone would like? <br/> 
+                        Bring it here! <br/> 
+                        Signup and be randomly matched with a partner, and bring the gift to the reception.<br/> 
+                        Don’t be shy meet your new family!
+                    </strong></p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>
