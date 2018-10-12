@@ -7,7 +7,7 @@
 
 module.exports = {
   'url' : 'mongodb://complicationlamp:gradschool1@ds263759.mlab.com:63759/blog-posts-1',
-  'test' : 'mongodb://complicationlamp:gradschool1@ds139920.mlab.com:39920/test-users-db'
+  'test' : 'mongodb://complicationlamp:gradschool1@ds129823.mlab.com:29823/test-users-db',
 };
 
 // =====================================================
